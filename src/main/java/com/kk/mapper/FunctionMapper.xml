@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+* Created by ZTCGenerator<zingon@aliyun.com> on 2019-11-28.
+-->
+<mapper namespace="com.kk.dao.FunctionDao">
+    <resultMap id="function" type="com.kk.po.Function">
+            <id property="id" column="id"/>
+            <result property="pid" column="pid"/>
+            <result property="pattern" column="pattern"/>
+            <result property="url" column="url"/>
+            <result property="icon" column="icon"/>
+            <result property="name" column="name"/>
+            <result property="discription" column="discription"/>
+            <result property="type" column="type"/>
+            <result property="sortnum" column="sortnum"/>
+            <result property="delFlag" column="del_flag"/>
+            <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="columns">
+            `id` ,`pid` ,`pattern` ,`url` ,`icon` ,`name` ,`discription` ,`type` ,`sortnum` ,`del_flag` ,`create_time`
+    </sql>
+
+    <insert id="insert">
+        insert into `function`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                `id`,
+            </if>
+            <if test="pid != null">
+                `pid`,
+            </if>
+            <if test="pattern != null">
+                `pattern`,
+            </if>
+            <if test="url != null">
+                `url`,
+            </if>
+            <if test="icon != null">
+                `icon`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="discription != null">
+                `discription`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="sortnum != null">
+                `sortnum`,
+            </if>
+            <if test="delFlag != null">
+                `del_flag`,
+            </if>
+            <if test="createTime != null">
+                `create_time`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id} ,
+            </if>
+            <if test="pid != null">
+            #{pid} ,
+            </if>
+            <if test="pattern != null">
+            #{pattern} ,
+            </if>
+            <if test="url != null">
+            #{url} ,
+            </if>
+            <if test="icon != null">
+            #{icon} ,
+            </if>
+            <if test="name != null">
+            #{name} ,
+            </if>
+            <if test="discription != null">
+            #{discription} ,
+            </if>
+            <if test="type != null">
+            #{type} ,
+            </if>
+            <if test="sortnum != null">
+            #{sortnum} ,
+            </if>
+            <if test="delFlag != null">
+            #{delFlag} ,
+            </if>
+            <if test="createTime != null">
+            #{createTime} ,
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from `function`
+        <trim prefix="where " prefixOverrides="and ">
+            <if test="id != null">
+                and `id` = #{id}
+            </if>
+            <if test="pid != null">
+                and `pid` = #{pid}
+            </if>
+            <if test="pattern != null">
+                and `pattern` = #{pattern}
+            </if>
+            <if test="url != null">
+                and `url` = #{url}
+            </if>
+            <if test="icon != null">
+                and `icon` = #{icon}
+            </if>
+            <if test="name != null">
+                and `name` = #{name}
+            </if>
+            <if test="discription != null">
+                and `discription` = #{discription}
+            </if>
+            <if test="type != null">
+                and `type` = #{type}
+            </if>
+            <if test="sortnum != null">
+                and `sortnum` = #{sortnum}
+            </if>
+            <if test="delFlag != null">
+                and `del_flag` = #{delFlag}
+            </if>
+            <if test="createTime != null">
+                and `create_time` = #{createTime}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deletes">
+        delete from `function`
+        where `id` in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+        #{id}
+        </foreach>
+    </delete>
+
+    <update id="update">
+        update `function`
+        <set>
+                <if test="pid != null">
+                    `pid` = #{pid},
+                </if>
+                <if test="pattern != null">
+                    `pattern` = #{pattern},
+                </if>
+                <if test="url != null">
+                    `url` = #{url},
+                </if>
+                <if test="icon != null">
+                    `icon` = #{icon},
+                </if>
+                <if test="name != null">
+                    `name` = #{name},
+                </if>
+                <if test="discription != null">
+                    `discription` = #{discription},
+                </if>
+                <if test="type != null">
+                    `type` = #{type},
+                </if>
+                <if test="sortnum != null">
+                    `sortnum` = #{sortnum},
+                </if>
+                <if test="delFlag != null">
+                    `del_flag` = #{delFlag},
+                </if>
+                <if test="createTime != null">
+                    `create_time` = #{createTime},
+                </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="select" resultMap="function">
+        select
+        <include refid="columns" />
+        from `function`
+        <trim prefix="where " prefixOverrides="and ">
+            <if test="id != null">
+                and `id` = #{id}
+            </if>
+            <if test="pid != null">
+                and `pid` = #{pid}
+            </if>
+            <if test="pattern != null">
+                and `pattern` = #{pattern}
+            </if>
+            <if test="url != null">
+                and `url` = #{url}
+            </if>
+            <if test="icon != null">
+                and `icon` = #{icon}
+            </if>
+            <if test="name != null">
+                and `name` = #{name}
+            </if>
+            <if test="discription != null">
+                and `discription` = #{discription}
+            </if>
+            <if test="type != null">
+                and `type` = #{type}
+            </if>
+            <if test="sortnum != null">
+                and `sortnum` = #{sortnum}
+            </if>
+            <if test="delFlag != null">
+                and `del_flag` = #{delFlag}
+            </if>
+            <if test="createTime != null">
+                and `create_time` = #{createTime}
+            </if>
+        </trim>
+    </select>
+</mapper>

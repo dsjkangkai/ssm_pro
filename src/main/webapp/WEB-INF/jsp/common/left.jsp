@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+    <c:forEach items="${funcionList}" var="function">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+            <a class="nav-link" href="charts.html">
+                <i class="fa fa-fw fa-area-chart"></i>
+                <span class="nav-link-text">${function.name}</span>
+            </a>
+        </li>
+    </c:forEach>
+
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="${ctx}/index/home">
             <i class="fa fa-fw fa-dashboard"></i>

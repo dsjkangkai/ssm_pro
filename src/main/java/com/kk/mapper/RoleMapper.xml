@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+* Created by ZTCGenerator<zingon@aliyun.com> on 2019-11-28.
+-->
+<mapper namespace="com.kk.dao.RoleDao">
+    <resultMap id="role" type="com.kk.po.Role">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="description" column="description"/>
+            <result property="pattern" column="pattern"/>
+            <result property="delFlag" column="del_flag"/>
+            <result property="sortnum" column="sortnum"/>
+            <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="columns">
+            `id` ,`name` ,`description` ,`pattern` ,`del_flag` ,`sortnum` ,`create_time`
+    </sql>
+
+    <insert id="insert">
+        insert into `role`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                `id`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="description != null">
+                `description`,
+            </if>
+            <if test="pattern != null">
+                `pattern`,
+            </if>
+            <if test="delFlag != null">
+                `del_flag`,
+            </if>
+            <if test="sortnum != null">
+                `sortnum`,
+            </if>
+            <if test="createTime != null">
+                `create_time`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id} ,
+            </if>
+            <if test="name != null">
+            #{name} ,
+            </if>
+            <if test="description != null">
+            #{description} ,
+            </if>
+            <if test="pattern != null">
+            #{pattern} ,
+            </if>
+            <if test="delFlag != null">
+            #{delFlag} ,
+            </if>
+            <if test="sortnum != null">
+            #{sortnum} ,
+            </if>
+            <if test="createTime != null">
+            #{createTime} ,
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from `role`
+        <trim prefix="where " prefixOverrides="and ">
+            <if test="id != null">
+                and `id` = #{id}
+            </if>
+            <if test="name != null">
+                and `name` = #{name}
+            </if>
+            <if test="description != null">
+                and `description` = #{description}
+            </if>
+            <if test="pattern != null">
+                and `pattern` = #{pattern}
+            </if>
+            <if test="delFlag != null">
+                and `del_flag` = #{delFlag}
+            </if>
+            <if test="sortnum != null">
+                and `sortnum` = #{sortnum}
+            </if>
+            <if test="createTime != null">
+                and `create_time` = #{createTime}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deletes">
+        delete from `role`
+        where `id` in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+        #{id}
+        </foreach>
+    </delete>
+
+    <update id="update">
+        update `role`
+        <set>
+                <if test="name != null">
+                    `name` = #{name},
+                </if>
+                <if test="description != null">
+                    `description` = #{description},
+                </if>
+                <if test="pattern != null">
+                    `pattern` = #{pattern},
+                </if>
+                <if test="delFlag != null">
+                    `del_flag` = #{delFlag},
+                </if>
+                <if test="sortnum != null">
+                    `sortnum` = #{sortnum},
+                </if>
+                <if test="createTime != null">
+                    `create_time` = #{createTime},
+                </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="select" resultMap="role">
+        select
+        <include refid="columns" />
+        from `role`
+        <trim prefix="where " prefixOverrides="and ">
+            <if test="id != null">
+                and `id` = #{id}
+            </if>
+            <if test="name != null">
+                and `name` = #{name}
+            </if>
+            <if test="description != null">
+                and `description` = #{description}
+            </if>
+            <if test="pattern != null">
+                and `pattern` = #{pattern}
+            </if>
+            <if test="delFlag != null">
+                and `del_flag` = #{delFlag}
+            </if>
+            <if test="sortnum != null">
+                and `sortnum` = #{sortnum}
+            </if>
+            <if test="createTime != null">
+                and `create_time` = #{createTime}
+            </if>
+        </trim>
+    </select>
+</mapper>

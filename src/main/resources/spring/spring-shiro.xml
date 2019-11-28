@@ -17,6 +17,7 @@
             <value>
                 /kk/**=anon <!--表示都可以访问-->
                 /toLogin=anon <!--表示都可以访问-->
+                /static/**=anon <!--表示都可以访问 静态资源-->
                 /login=anon
                 /logout=logout <!--访问logout自动退出-->
                 <!--/admin=anon-->
