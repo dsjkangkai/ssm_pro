@@ -3,12 +3,21 @@
 
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-    <c:forEach items="${funcionList}" var="function">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="charts.html">
-                <i class="fa fa-fw fa-area-chart"></i>
-                <span class="nav-link-text">${function.name}</span>
+    <c:forEach items="${funcionList}" var="pfun">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                <i class="fa fa-fw fa-wrench"></i>
+                <span class="nav-link-text">${pfun.name}</span>
             </a>
+            <c:if test="${fn:length(pfun.functions) > 0}">
+                <ul class="sidenav-second-level collapse" id="collapseComponents">
+                    <c:forEach items="${pfun.functions}" var="cfun">
+                        <li>
+                            <a href="${ctx}/${cfun.url}">${cfun.name}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
         </li>
     </c:forEach>
 
