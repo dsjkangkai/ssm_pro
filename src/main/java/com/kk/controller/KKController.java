@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by kk on 2019-1-25.
+ * 京东token认证代码
  */
 @Controller
 @RequestMapping("/kk")

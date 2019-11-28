@@ -44,10 +44,10 @@ public class LoginController {
 
         if (error != null) {//出错了，返回登录页面
             model.addAttribute("error", error);
-            return "login";
+            return "login1";
         } else {//登录成功
             model.addAttribute("user", userService.getUserByName(username));
-            return "redirect:user/getUser";
+            return "redirect:index/home";
         }
     }
 
