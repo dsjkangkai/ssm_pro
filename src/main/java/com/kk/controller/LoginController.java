@@ -52,7 +52,7 @@ public class LoginController {
 
         if (error != null) {//出错了，返回登录页面
             model.addAttribute("error", error);
-            return "login1";
+            return "login";
         } else {//登录成功
             model.addAttribute("user", userService.getUserByName(username));
             if (ShiroUtils.getSessionUser() == null){
@@ -80,9 +80,6 @@ public class LoginController {
                     }
                     pfun.setFunctions(childList);
                 }
-
-
-
                 request.getSession().setAttribute("funcionList",pfunList);
             }
             return "redirect:index/home";
