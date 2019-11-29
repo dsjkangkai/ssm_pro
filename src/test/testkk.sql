@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2019-11-29 19:44:38
+Date: 2019-11-29 21:05:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,11 +32,17 @@ CREATE TABLE `function` (
   `del_flag` tinyint(4) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of function
 -- ----------------------------
+INSERT INTO `function` VALUES ('1', '0', 'system', null, 'fa-cog', '系统设置', '这是系统设置', '1', '1', '2', '2019-11-29 19:47:22');
+INSERT INTO `function` VALUES ('2', '1', 'user', null, null, '用户', null, null, '1', '2', null);
+INSERT INTO `function` VALUES ('3', '1', 'role', null, null, '角色', null, null, '2', '2', null);
+INSERT INTO `function` VALUES ('4', '1', 'function', null, null, '权限', null, null, '3', '2', null);
+INSERT INTO `function` VALUES ('5', '0', 'content', null, 'fa-futbol-o', '内容管理', null, null, '2', '2', null);
+INSERT INTO `function` VALUES ('6', '5', 'information', null, null, '资讯', null, null, '1', '2', null);
 
 -- ----------------------------
 -- Table structure for `role`
