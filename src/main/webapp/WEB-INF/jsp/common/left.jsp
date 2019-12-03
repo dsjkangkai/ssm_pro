@@ -13,7 +13,7 @@
                 <ul class="sidenav-second-level collapse" id="${pfun.pattern}">
                     <c:forEach items="${pfun.functions}" var="cfun">
                         <li>
-                            <a href="${ctx}/${cfun.url}">${cfun.name}</a>
+                            <a href="${ctx}${cfun.url}">${cfun.name}</a>
                         </li>
                     </c:forEach>
                 </ul>

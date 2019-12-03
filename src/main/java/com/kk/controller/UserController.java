@@ -29,6 +29,12 @@ public class UserController {
         return "user/showUser";
     }
 
+    @RequestMapping(value = "golist")
+    public String golist(Model model) {
+
+        return "user/addEdit";
+    }
+
     @RequestMapping(value = "list")
     @ResponseBody
     public Object listUser() {
