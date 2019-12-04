@@ -16,7 +16,7 @@ public class IndexController {
 
     @RequestMapping(value = "/home")
     public String home(HttpServletRequest request, Model model) {
-        return "index/home";
+        return "index/index";
     }
 
     @RequestMapping(value = "/navbar")

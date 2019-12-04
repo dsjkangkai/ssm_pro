@@ -11,7 +11,7 @@ $(document).ready(function () {
     $('ul.nav').find('a.active').parent().parent().parent().addClass('open');
 
     /**
-     * Sidebar Toggle
+     * pc端全屏切换
      */
     $('.sidebar-toggle').on('click', function (e) {
         e.preventDefault();

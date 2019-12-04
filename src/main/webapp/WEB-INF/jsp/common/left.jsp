@@ -1,113 +1,197 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 
-<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-title">自定义菜单</li>
+            <c:forEach items="${funcionList}" var="pfun">
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link nav-dropdown-toggle">
+                        <i class="icon icon-target"></i>${pfun.name}<i class="fa fa-caret-left"></i>
+                    </a>
 
-    <c:forEach items="${funcionList}" var="pfun">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#${pfun.pattern}" data-parent="#exampleAccordion">
-                <i class="fa fa-fw ${pfun.icon}"></i>
-                <span class="nav-link-text">${pfun.name}</span>
-            </a>
-            <c:if test="${fn:length(pfun.functions) > 0}">
-                <ul class="sidenav-second-level collapse" id="${pfun.pattern}">
-                    <c:forEach items="${pfun.functions}" var="cfun">
-                        <li>
-                            <a href="${ctx}${cfun.url}">${cfun.name}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </c:if>
-        </li>
-    </c:forEach>
+                    <c:if test="${fn:length(pfun.functions) > 0}">
+                        <ul class="nav-dropdown-items">
+                            <c:forEach items="${pfun.functions}" var="cfun">
+                                <li class="nav-item">
+                                    <a href="${ctx}${cfun.url}" class="nav-link">
+                                        <i class="icon icon-target"></i>${cfun.name}
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </li>
+            </c:forEach>
 
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="${ctx}/index/home">
-            <i class="fa fa-fw fa-cloud"></i>
-            <span class="nav-link-text">Dashboard</span>
-        </a>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-        <a class="nav-link" href="charts.html">
-            <i class="fa fa-fw fa-area-chart"></i>
-            <span class="nav-link-text">Charts123</span>
-        </a>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-        <a class="nav-link" href="tables.html">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Tables</span>
-        </a>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text">Components</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
-                <a href="${ctx}/index/navbar">Navbar</a>
+            <li class="nav-title">Navigation</li>
+
+            <li class="nav-item">
+                <a href="index.html" class="nav-link active">
+                    <i class="icon icon-speedometer"></i> Dashboard
+                </a>
             </li>
-            <li>
-                <a href="cards.html">Cards</a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">Example Pages</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-            <li>
-                <a href="login.html">Login Page</a>
-            </li>
-            <li>
-                <a href="register.html">Registration Page</a>
-            </li>
-            <li>
-                <a href="forgot-password.html">Forgot Password Page</a>
-            </li>
-            <li>
-                <a href="blank.html">Blank Page</a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-sitemap"></i>
-            <span class="nav-link-text">Menu Levels</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseMulti">
-            <li>
-                <a href="#">Second Level Item</a>
-            </li>
-            <li>
-                <a href="#">Second Level Item</a>
-            </li>
-            <li>
-                <a href="#">Second Level Item</a>
-            </li>
-            <li>
-                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
-                <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                    <li>
-                        <a href="#">Third Level Item</a>
+
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="layouts-normal.html" class="nav-link">
+                            <i class="icon icon-target"></i> Normal
+                        </a>
                     </li>
-                    <li>
-                        <a href="#">Third Level Item</a>
+
+                    <li class="nav-item">
+                        <a href="layouts-fixed-sidebar.html" class="nav-link">
+                            <i class="icon icon-target"></i> Fixed Sidebar
+                        </a>
                     </li>
-                    <li>
-                        <a href="#">Third Level Item</a>
+
+                    <li class="nav-item">
+                        <a href="layouts-fixed-header.html" class="nav-link">
+                            <i class="icon icon-target"></i> Fixed Header
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="layouts-hidden-sidebar.html" class="nav-link">
+                            <i class="icon icon-target"></i> Hidden Sidebar
+                        </a>
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-energy"></i> UI Kits <i class="fa fa-caret-left"></i>
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="alerts.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Alerts
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="buttons.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Buttons
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="cards.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Cards
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="modals.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Modals
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="tabs.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Tabs
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="progress-bars.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Progress Bars
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="widgets.html" class="nav-link">
+                            <i class="icon icon-energy"></i> Widgets
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="chartjs.html" class="nav-link">
+                            <i class="icon icon-graph"></i> Chart.js
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="forms.html" class="nav-link">
+                    <i class="icon icon-puzzle"></i> Forms
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="tables.html" class="nav-link">
+                    <i class="icon icon-grid"></i> Tables
+                </a>
+            </li>
+
+            <li class="nav-title">More</li>
+
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-umbrella"></i> Pages <i class="fa fa-caret-left"></i>
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="blank.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> Blank Page
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="login.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="register.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> Register
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="invoice.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> Invoice
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="404.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> 404
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="500.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> 500
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <i class="icon icon-umbrella"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-        <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-link"></i>
-            <span class="nav-link-text">Link</span>
-        </a>
-    </li>
-</ul>
+    </nav>
+</div>

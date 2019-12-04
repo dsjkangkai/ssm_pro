@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * Created by kk on 2019-1-25.
@@ -32,14 +36,16 @@ public class UserController {
     @RequestMapping(value = "golist")
     public String golist(Model model) {
 
-        return "user/addEdit";
+        return "user/list";
     }
 
     @RequestMapping(value = "list")
     @ResponseBody
-    public Object listUser() {
+    public Map listUser() {
+        Map<String, Object> map = new HashMap<>();
         User user = new User();
-        return userService.list(user);
+        map.put("data", userService.list(user));
+        return map;
     }
 
     @RequestMapping(value = "getById")
