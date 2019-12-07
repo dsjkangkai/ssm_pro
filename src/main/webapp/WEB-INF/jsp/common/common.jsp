@@ -19,5 +19,8 @@
 <script src="${ctx}/static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/vendor/chart.js/chart.min.js"></script>
 <script src="${ctx}/static/vendor/datatables/js/jquery.dataTables.js"></script>
+<script src="${ctx}/static/vendor/jq-validate/jquery.validate.js"></script>
+<script src="${ctx}/static/vendor/jq-validate/additional-methods.js"></script>
+<script src="${ctx}/static/vendor/jq-validate/jquery.metadata.js"></script>
 <script src="${ctx}/static/js/carbon.js"></script>
 <script src="${ctx}/static/js/demo.js"></script>

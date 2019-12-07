@@ -48,6 +48,24 @@ public class UserController {
         return map;
     }
 
+    @RequestMapping(value = "goAddEdit")
+    public String goAddEdit(Model model) {
+
+        return "user/addEdit";
+    }
+
+    @RequestMapping(value = "addEdit")
+    @ResponseBody
+    public Object addEdit(User user) {
+        if (user.getId() ==null){
+            userService.insert(user);
+        }else {
+            userService.update(user);
+        }
+        return user;
+    }
+
+
     @RequestMapping(value = "getById")
     @ResponseBody
     public Object getByIdUser(Integer id) {

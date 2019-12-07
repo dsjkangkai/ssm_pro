@@ -30,7 +30,10 @@
                             <div class="card-header bg-light">
                                 用户列表
                             </div>
-                            <div class="kk_table">
+                            <div class="card-body">
+                                <div class="kk_mb-12">
+                                    <button type="button" class="btn btn-outline-primary" onclick="addEditUser()">新建</button>
+                                </div>
                                 <table id="table_id_example" class="display">
                                     <thead>
                                     <tr>
@@ -64,6 +67,10 @@
             {"data": "deleteFlag"}
         ]
     });
+    
+    function addEditUser(id) {
+        location.href="${ctx}/user/goAddEdit";
+    }
 </script>
 </body>
 </html>
