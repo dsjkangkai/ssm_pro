@@ -1,8 +1,8 @@
 package com.kk.shiro.realm;
 
 import com.kk.po.Function;
-import com.kk.po.Role;
-import com.kk.po.User;
+import com.kk.po.RolePo;
+import com.kk.po.UserPo;
 import com.kk.service.FunctionService;
 import com.kk.service.RoleService;
 import com.kk.service.UserService;
@@ -45,17 +45,17 @@ public class MyRealm extends AuthorizingRealm {
 
         if (username != null) {
             //获取用户信息
-            User user = userService.getUserByName(username);
+            UserPo user = userService.getUserByName(username);
 
             //获取用户角色
-            List<Role> roles = roleService.select(null);
+            List<RolePo> roles = roleService.select(null);
             //获取权限列表
             List<Function> functionStrList = functionService.select(null);
 
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
             if (roles != null && !roles.isEmpty()) {
-                for (Role role : roles) {
+                for (RolePo role : roles) {
                     info.addRole(role.getName());//加入角色
                 }
             }
@@ -86,7 +86,7 @@ public class MyRealm extends AuthorizingRealm {
         String username = token.getUsername();
         System.out.println("username:" + username);
         if (username != null && !"".equals(username)) {
-            User user = userService.getUserByName(username);
+            UserPo user = userService.getUserByName(username);
             if (user != null) {
                 return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
             }

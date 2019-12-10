@@ -1,26 +1,27 @@
 package com.kk.dao;
 
-import com.kk.po.User;
+import com.kk.po.UserPo;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by kk on 2019-1-25.
+* Created by kk on 2019-12-10.
 */
 public interface UserDao {
 
-    int insert(User user);
+    int insert(UserPo user);
 
-    int delete(User user);
+    int delete(UserPo user);
 
-    int deleteByIds(@Param("ids") Integer[] ids);
+    int deletes(@Param("ids") Integer[] ids);
 
-    int update(User user);
+    int update(UserPo user);
 
-    User getById(@Param("id") Integer id);
+    List<UserPo> select(Map<String, Object> map);
 
-    List<User> list(User user);
+    UserPo selectById(Integer id);
 
-    User getUserByName(String username);
+    UserPo getUserByName(String username);
 }

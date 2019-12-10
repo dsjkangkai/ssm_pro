@@ -1,21 +1,24 @@
 package com.kk.service;
 
-import com.kk.po.Role;
+import com.kk.po.RolePo;
+import com.kk.po.RolePo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
-* Created by ZTCGenerator<zingon@aliyun.com> on 2019-11-28.
+* Created by kk on 2019-12-10.
 */
 public interface RoleService {
 
-    int insert(Role role);
+    int insert(RolePo role);
 
-    int delete(Role role);
+    int delete(RolePo role);
 
     int deletes(Integer[] ids);
 
-    int update(Role role);
+    int update(RolePo role);
 
-    List<Role> select(Role role);
+    List<RolePo> select(Map<String, Object> map);
+
 }

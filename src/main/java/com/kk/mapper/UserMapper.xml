@@ -2,10 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <!--
-* Created by ZTCGenerator<zingon@aliyun.com> on 2019-1-25.
+* Created by kk on 2019-12-10.
 -->
 <mapper namespace="com.kk.dao.UserDao">
-    <resultMap id="user" type="com.kk.po.User">
+
+    <sql id="tableName"> user a </sql>
+    <sql id="tableNameUpdate"> user </sql>
+
+    <sql id="columns">
+        a.id as "id",
+        a.name as "name",
+        a.password as "password",
+        a.role_type as "roleType",
+        a.create_time as "createTime",
+        a.delete_flag as "deleteFlag"
+    </sql>
+
+    <resultMap id="beanMap" type="com.kk.po.UserPo">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
@@ -14,144 +27,98 @@
         <result property="deleteFlag" column="delete_flag"/>
     </resultMap>
 
-    <sql id="columns">
-            `id` ,`name` ,`password` ,`role_type` ,`create_time` ,`delete_flag`
+    <sql id="condition_sql">
+        <if test="id != null and id != ''"> and a.id = #{id}</if>
+        <if test="name != null and name != ''"> and a.name = #{name}</if>
+        <if test="password != null and password != ''"> and a.password = #{password}</if>
+        <if test="roleType != null and roleType != ''"> and a.role_type = #{roleType}</if>
+        <if test="createTime != null and createTime != ''"> and a.create_time = #{createTime}</if>
+        <if test="deleteFlag != null and deleteFlag != ''"> and a.delete_flag = #{deleteFlag}</if>
     </sql>
 
+    <select id="selectById" resultMap="beanMap">
+        select <include refid="columns"/>
+        from <include refid="tableName"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="select" resultMap="beanMap">
+        select <include refid="columns"/>
+        from <include refid="tableName"/>
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        ORDER BY a.id DESC
+    </select>
+
+    <select id="selectPage" parameterType="java.util.Map"  resultMap="beanMap">
+        select <include refid="columns"/>
+        from <include refid="tableName"/>
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        LIMIT #{pageFirst} , #{pageSize}
+    </select>
+
+    <select id="selectPageCount" parameterType="java.util.Map" resultType="long">
+        select COUNT(1)
+        from <include refid="tableName"/>
+        <where>
+            <include refid="condition_sql" />
+        </where>
+    </select>
+
     <insert id="insert">
-        insert into `user`
+        insert into <include refid="tableNameUpdate"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                `id`,
-            </if>
-            <if test="name != null">
-                `name`,
-            </if>
-            <if test="password != null">
-                `password`,
-            </if>
-            <if test="roleType != null">
-                `role_type`,
-            </if>
-            <if test="createTime != null">
-                `create_time`,
-            </if>
-            <if test="deleteFlag != null">
-                `delete_flag`,
-            </if>
+            <if test="id != null"> id, </if>
+            <if test="name != null"> name, </if>
+            <if test="password != null"> password, </if>
+            <if test="roleType != null"> role_type, </if>
+            <if test="createTime != null"> create_time, </if>
+            <if test="deleteFlag != null"> delete_flag, </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id} ,
-            </if>
-            <if test="name != null">
-                #{name} ,
-            </if>
-            <if test="password != null">
-                #{password} ,
-            </if>
-            <if test="roleType != null">
-                #{roleType} ,
-            </if>
-            <if test="createTime != null">
-                #{createTime} ,
-            </if>
-            <if test="deleteFlag != null">
-                #{deleteFlag} ,
-            </if>
+            <if test="id != null"> #{id} , </if>
+            <if test="name != null"> #{name} , </if>
+            <if test="password != null"> #{password} , </if>
+            <if test="roleType != null"> #{roleType} , </if>
+            <if test="createTime != null"> #{createTime} , </if>
+            <if test="deleteFlag != null"> #{deleteFlag} , </if>
         </trim>
     </insert>
 
+    <update id="update">
+        update <include refid="tableNameUpdate"/>
+        <set>
+            <if test="name != null"> name = #{name},</if>
+            <if test="password != null"> password = #{password},</if>
+            <if test="roleType != null"> role_type = #{roleType},</if>
+            <if test="createTime != null"> create_time = #{createTime},</if>
+            <if test="deleteFlag != null"> delete_flag = #{deleteFlag},</if>
+        </set>
+        where id = #{id}
+    </update>
+
     <delete id="delete">
-        delete from `user`
-        <trim prefix="where " prefixOverrides="and ">
-            <if test="id != null">
-                and `id` = #{id}
-            </if>
-            <if test="name != null">
-                and `name` = #{name}
-            </if>
-            <if test="password != null">
-                and `password` = #{password}
-            </if>
-            <if test="roleType != null">
-                and `role_type` = #{roleType}
-            </if>
-            <if test="createTime != null">
-                and `create_time` = #{createTime}
-            </if>
-            <if test="deleteFlag != null">
-                and `delete_flag` = #{deleteFlag}
-            </if>
-        </trim>
+        delete from <include refid="tableNameUpdate"/>
+        WHERE id = #{id}
     </delete>
 
-    <delete id="deleteByIds">
-        delete from `user`
-        where `id` in
+    <delete id="deletes">
+        delete from <include refid="tableNameUpdate"/>
+        where id in
         <foreach collection="ids" open="(" item="id" separator="," close=")">
             #{id}
         </foreach>
     </delete>
 
-    <update id="update">
-        update `user`
-        <set>
-            <if test="name != null">
-                `name` = #{name},
-            </if>
-            <if test="password != null">
-                `password` = #{password},
-            </if>
-            <if test="roleType != null">
-                `role_type` = #{roleType},
-            </if>
-            <if test="createTime != null">
-                `create_time` = #{createTime},
-            </if>
-            <if test="deleteFlag != null">
-                `delete_flag` = #{deleteFlag},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <select id="getById" resultMap="user">
-        select
-        <include refid="columns"/>
-        from `user`
-        where `id` = #{id}
-    </select>
-
-    <select id="list" resultMap="user">
-        select
-        <include refid="columns"/>
-        from `user`
-        <trim prefix="where " prefixOverrides="and ">
-            <if test="id != null">
-                and `id` = #{id}
-            </if>
-            <if test="name != null">
-                and `name` = #{name}
-            </if>
-            <if test="password != null">
-                and `password` = #{password}
-            </if>
-            <if test="roleType != null">
-                and `role_type` = #{roleType}
-            </if>
-            <if test="createTime != null">
-                and `create_time` = #{createTime}
-            </if>
-            <if test="deleteFlag != null">
-                and `delete_flag` = #{deleteFlag}
-            </if>
-        </trim>
-    </select>
-
-    <select id="getUserByName" resultMap="user">
+    <select id="getUserByName" resultMap="beanMap">
         select <include refid="columns"/>
-        from `user` where name = #{name}
+        from <include refid="tableName"/>
+        <where>
+            a.name = #{name}
+        </where>
     </select>
 
 </mapper>

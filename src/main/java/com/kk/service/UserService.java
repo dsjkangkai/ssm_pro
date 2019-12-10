@@ -1,24 +1,25 @@
 package com.kk.service;
 
-import com.kk.po.User;
+import com.kk.po.UserPo;
 import java.util.List;
+import java.util.Map;
 
 /**
-* Created by kk on 2019-1-25.
+* Created by kk on 2019-12-10.
 */
 public interface UserService {
 
-    int insert(User user);
+    int insert(UserPo user);
 
-    int delete(User user);
+    int delete(UserPo user);
 
-    int deleteByIds(Integer[] ids);
+    int deletes(Integer[] ids);
 
-    int update(User user);
+    int update(UserPo user);
 
-    User getById(Integer id);
+    UserPo selectById(Integer id);
 
-    List<User> list(User user);
+    List<UserPo> select(Map<String, Object> map);
 
-    User getUserByName(String username);
+    UserPo getUserByName(String username);
 }

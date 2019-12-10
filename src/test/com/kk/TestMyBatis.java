@@ -1,7 +1,7 @@
 package com.kk;
 
 import com.alibaba.fastjson.JSON;
-import com.kk.po.User;
+import com.kk.po.UserPo;
 import com.kk.service.UserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -12,7 +12,6 @@ import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.io.StringReader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +25,7 @@ public class TestMyBatis {
 
     @Test
     public void test1() {
-        User user = userService.getById(1);
+        UserPo user = userService.selectById(1);
         logger.info(JSON.toJSONString(user));
     }
 

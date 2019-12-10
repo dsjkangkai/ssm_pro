@@ -1,16 +1,17 @@
 package com.kk.service.impl;
 
-import com.kk.dao.RoleDao;
-import com.kk.po.Role;
 import com.kk.service.RoleService;
+import com.kk.dao.RoleDao;
+import com.kk.po.RolePo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Map;
 
 /**
-* Created by ZTCGenerator<zingon@aliyun.com> on 2019-11-28.
+* Created by kk on 2019-12-10.
 */
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -20,13 +21,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public int insert(Role role){
+    public int insert(RolePo role){
         return roleDao.insert(role);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public int delete(Role role){
+    public int delete(RolePo role){
         return roleDao.delete(role);
     }
 
@@ -38,14 +39,14 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public int update(Role role){
+    public int update(RolePo role){
         return roleDao.update(role);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public List<Role> select(Role role){
-        return roleDao.select(role);
+    public List<RolePo> select(Map<String,Object> map){
+        return roleDao.select(map);
     }
 
 }

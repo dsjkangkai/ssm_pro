@@ -1,15 +1,15 @@
 package com.kk.controller;
 
+import com.kk.po.UserPo;
 import com.kk.service.UserService;
-import com.kk.po.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.registry.infomodel.User;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -29,7 +29,7 @@ public class UserController {
     public String getUser(Model model , Integer id) {
         if (id == null ) id = 1;
         System.out.println("s");
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", userService.selectById(id));
         return "user/showUser";
     }
 
@@ -43,8 +43,8 @@ public class UserController {
     @ResponseBody
     public Map listUser() {
         Map<String, Object> map = new HashMap<>();
-        User user = new User();
-        map.put("data", userService.list(user));
+        UserPo user = new UserPo();
+        map.put("data", userService.select(new HashMap<String, Object>()));
         return map;
     }
 
@@ -56,7 +56,7 @@ public class UserController {
 
     @RequestMapping(value = "addEdit")
     @ResponseBody
-    public Object addEdit(User user) {
+    public Object addEdit(UserPo user) {
         if (user.getId() ==null){
             userService.insert(user);
         }else {
@@ -69,32 +69,32 @@ public class UserController {
     @RequestMapping(value = "getById")
     @ResponseBody
     public Object getByIdUser(Integer id) {
-        return userService.getById(id);
+        return userService.selectById(id);
     }
 
     @RequestMapping(value = "insert")
     @ResponseBody
-    public Object insertUser(@RequestBody User user) {
+    public Object insertUser(@RequestBody UserPo user) {
         return userService.insert(user);
     }
 
 
     @RequestMapping(value = "update")
     @ResponseBody
-    public Object updateUser(@RequestBody User user) {
+    public Object updateUser(@RequestBody UserPo user) {
         return userService.update(user);
     }
 
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object deleteUser(@RequestBody User user) {
+    public Object deleteUser(@RequestBody UserPo user) {
         return userService.delete(user);
     }
 
     @RequestMapping(value = "deleteByIds")
     @ResponseBody
     public Object deleteUserByIds(@RequestBody Integer[] ids) {
-        return userService.deleteByIds(ids);
+        return userService.deletes(ids);
     }
 }

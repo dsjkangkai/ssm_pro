@@ -77,8 +77,7 @@
             rules: {
                 name :{
                     required : true,
-                    kkphone: true,
-                    se2be: [234,789]
+                    kkphone: true
                 },
                 password: {
                     required : true,
